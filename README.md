@@ -1,2 +1,2 @@
 # Trabalho-de-l-gica
-Odio ás loiras
+Ódio às loiras
