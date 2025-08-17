@@ -12,12 +12,11 @@ Saldos = []
 Extratos = []
 NumeroSaques = []
 
-#Limites bancarios
+# Limites bancários
 LIMITE = 500
 LIMITE_SAQUES = 2
 
 
-#Criação da conta
 def criar_nova_conta(nome, cpf, data, est_civ, email, senha):
     Nomes.append(nome)
     CPFs.append(cpf)
@@ -25,11 +24,10 @@ def criar_nova_conta(nome, cpf, data, est_civ, email, senha):
     Est_civ.append(est_civ)
     Emails.append(email)
     Senhas.append(senha)
-    Saldos.append(0)
-    Extratos.append("")
-    NumeroSaques.append(0)
-    
-
+    Saldos.append(0.0)           
+    Extratos.append("")       
+    NumeroSaques.append(0)       
+                                
 
 def limpar_tela():
     os.system('cls')
@@ -38,24 +36,25 @@ def limpar_tela():
 def pausar():
     input('[ENTER] para continuar...')
 
-#Mwnu bancario (depois do login)
+
+# Menu bancário (depois do login)
 def menu_banco(usuario):
     while True:
         limpar_tela()
         menu = f"""
-        |==== [ BANCO - {Nomes[usuario]}]====|
-              [d] Depositar
-              [s] Sacar
-              [e] Extrato
-              [f] Fim/Sair
-              => """
-              opcao = input(menu)
+        |===== [BANCO - {Nomes[usuario]}] =====|
+        [d] Depositar
+        [s] Sacar
+        [e] Extrato
+        [f] Sair da conta
+        => """
+        opcao = input(menu)
 
-              if opcao == "d":
-                  valor = float(input("Infome o valor do deposito:"))
-                  
-              if valor > 0:
-                  Saldos[usuario] += valor
+        if opcao == "d":
+            valor = float(input("Informe o valor do depósito: "))
+
+            if valor > 0:
+                Saldos[usuario] += valor
                 Extratos[usuario] += f"Depósito: R$ {valor:.2f}\n"
                 print("Depósito realizado com sucesso!")
             else:
@@ -63,44 +62,45 @@ def menu_banco(usuario):
 
             pausar()
 
-elif opcao == "s":
-    valor = float(input("Informe o valor do saque:")
-    excedeuSaldo = valor > Saldos[usuario]
-    excedeuLimite = valor > LIMITE
-    excedeuSaques = NumeroSaques[usuario] >= LIMITE_SAQUES
+        elif opcao == "s":
+            valor = float(input("Informe o valor do saque: "))
 
-    if excedeuSaldo:
-        print(" Operacao falhou! você não tem saldo suficiente.")
-    elif excedeuLimite:
-         print("Operação falhou! O valor do saque excedeu o limite.")
-    elif excedeuSaques:
-         print("Operação falhou! Número máximo de saques excedido.")
-    elif valor > 0:
-         Saldos[usuario] -= valor
-         Extratos[usuario] += f"Saque:    R$ {valor:.2f}\n"
-         NumeroSaques[usuario] += 1
-         print("Saque realizado com sucesso!")
-    else:
-         print("Operacao falhou! O valor informado e invalido.")
+            excedeuSaldo = valor > Saldos[usuario]
+            excedeuLimite = valor > LIMITE
+            excedeuSaques = NumeroSaques[usuario] >= LIMITE_SAQUES
 
-      pausar()
+            if excedeuSaldo:
+                print("Operação falhou! Você não tem saldo suficiente.")
+            elif excedeuLimite:
+                print("Operação falhou! O valor do saque excedeu o limite.")
+            elif excedeuSaques:
+                print("Operação falhou! Número máximo de saques excedido.")
+            elif valor > 0:
+                Saldos[usuario] -= valor
+                Extratos[usuario] += f"Saque:    R$ {valor:.2f}\n"
+                NumeroSaques[usuario] += 1
+                print("Saque realizado com sucesso!")
+            else:
+                print("Operação falhou! O valor informado é inválido.")
 
-elif opcao == "e":
-print(f"\n ======== EXTRATO {Nomes[usuario]} ==========")
-print("Não foram realizadas movimentações."
-      if not Extratos[usuario] else Extratos[usuario])
- print(f"\nSaldo: R$ {Saldos[usuario]:.2f}")
- print("=========================================")
- pausar()
+            pausar()
 
- elif opcao == "f":
-     print("Saindo da conta...")
-     pausar()
-     break
+        elif opcao == "e":
+            print(f"\n ======== EXTRATO {Nomes[usuario]} ==========")
+            print("Não foram realizadas movimentações."
+                  if not Extratos[usuario] else Extratos[usuario])
+            print(f"\nSaldo: R$ {Saldos[usuario]:.2f}")
+            print("=========================================")
+            pausar()
 
- else:
- print("Operação inválida! Selecione a opção correta.")
- pausar()
+        elif opcao == "f":
+            print("Saindo da conta...")
+            pausar()
+            break
+
+        else:
+            print("Operação inválida! Selecione a opção correta.")
+            pausar()
 
 
 #Menu inicial de cadastro
