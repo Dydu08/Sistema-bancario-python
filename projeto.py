@@ -39,11 +39,11 @@ def pausar():
     input('[ENTER] para continuar...')
 
 #Mwnu bancario (depois do login)
-def menu_banco(usuario_id):
+def menu_banco(usuario):
     while True:
         limpar_tela()
         menu = f"""
-        |==== [ BANCO - {Nomes[usuario_id]}]====|
+        |==== [ BANCO - {Nomes[usuario]}]====|
               [d] Depositar
               [s] Sacar
               [e] Extrato
@@ -55,15 +55,55 @@ def menu_banco(usuario_id):
                   valor = float(input("Infome o valor do deposito:"))
                   
               if valor > 0:
-                  Saldos[usuario_id] += valor
-                Extratos[usuario_id] += f"Depósito: R$ {valor:.2f}\n"
+                  Saldos[usuario] += valor
+                Extratos[usuario] += f"Depósito: R$ {valor:.2f}\n"
                 print("Depósito realizado com sucesso!")
             else:
                 print("Operação falhou! O valor informado é inválido.")
 
             pausar()
 
-#Menu de cadastro
+elif opcao == "s":
+    valor = float(input("Informe o valor do saque:")
+    excedeuSaldo = valor > Saldos[usuario]
+    excedeuLimite = valor > LIMITE
+    excedeuSaques = NumeroSaques[usuario] >= LIMITE_SAQUES
+
+    if excedeuSaldo:
+        print(" Operacao falhou! você não tem saldo suficiente.")
+    elif excedeuLimite:
+         print("Operação falhou! O valor do saque excedeu o limite.")
+    elif excedeuSaques:
+         print("Operação falhou! Número máximo de saques excedido.")
+    elif valor > 0:
+         Saldos[usuario] -= valor
+         Extratos[usuario] += f"Saque:    R$ {valor:.2f}\n"
+         NumeroSaques[usuario] += 1
+         print("Saque realizado com sucesso!")
+    else:
+         print("Operacao falhou! O valor informado e invalido.")
+
+      pausar()
+
+elif opcao == "e":
+print(f"\n ======== EXTRATO {Nomes[usuario]} ==========")
+print("Não foram realizadas movimentações."
+      if not Extratos[usuario] else Extratos[usuario])
+ print(f"\nSaldo: R$ {Saldos[usuario]:.2f}")
+ print("=========================================")
+ pausar()
+
+ elif opcao == "f":
+     print("Saindo da conta...")
+     pausar()
+     break
+
+ else:
+ print("Operação inválida! Selecione a opção correta.")
+ pausar()
+
+
+#Menu inicial de cadastro
 while True:
     limpar_tela()
     
