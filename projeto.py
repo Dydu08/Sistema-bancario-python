@@ -103,7 +103,7 @@ def menu_banco(usuario):
             pausar()
 
 
-#Menu inicial de cadastro
+#Menu inicial 
 while True:
     limpar_tela()
     
