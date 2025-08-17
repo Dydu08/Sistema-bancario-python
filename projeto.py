@@ -8,6 +8,13 @@ Data_nsc =[]
 Est_civ = []
 Emails = []
 Senhas = []
+Saldos = []
+Extratos = []
+NumeroSaques = []
+
+#Limites bancarios
+LIMITE = 500
+LIMITE_SAQUES = 2
 
 
 #Criação da conta
@@ -18,6 +25,10 @@ def criar_nova_conta(nome, cpf, data, est_civ, email, senha):
     Est_civ.append(est_civ)
     Emails.append(email)
     Senhas.append(senha)
+    Saldos.append(0)
+    Extratos.append("")
+    NumeroSaques.append(0)
+    
 
 
 def limpar_tela():
@@ -27,6 +38,30 @@ def limpar_tela():
 def pausar():
     input('[ENTER] para continuar...')
 
+#Mwnu bancario (depois do login)
+def menu_banco(usuario_id):
+    while True:
+        limpar_tela()
+        menu = f"""
+        |==== [ BANCO - {Nomes[usuario_id]}]====|
+              [d] Depositar
+              [s] Sacar
+              [e] Extrato
+              [f] Fim/Sair
+              => """
+              opcao = input(menu)
+
+              if opcao == "d":
+                  valor = float(input("Infome o valor do deposito:"))
+                  
+              if valor > 0:
+                  Saldos[usuario_id] += valor
+                Extratos[usuario_id] += f"Depósito: R$ {valor:.2f}\n"
+                print("Depósito realizado com sucesso!")
+            else:
+                print("Operação falhou! O valor informado é inválido.")
+
+            pausar()
 
 #Menu de cadastro
 while True:
