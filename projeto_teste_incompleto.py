@@ -88,6 +88,27 @@ def funcao_bancaria_principal(posicao):
 
 
             case 4:
+                while true:
+                    limpar_tela()
+                    tran_cont = int(input('Digite o número da conta para qual você quer realizar a tranferencia: '))
+                    
+                    if tran_cont in Num_conta:
+                        tran_pos = Num_conta.index(tran_cont)
+                        
+                        print(f'A conta digitada pertence à {Nomes[tran_pos]}')
+                        
+                        tran_valor = float(input('Digite o valor que deseja tranferir: '))
+                        
+                        Extrato[posicao] -= tran_valor
+                        
+                        Extrato[tran_pos] += tran_valor
+
+                        print(f'A transferencia foi realizada com suceso!\nSeu saldo atual é: {Extrato[posicao]}')
+                        pausar()
+                        break
+
+                    else:
+                        print('O número da conta digitado não esta regitrado. Tente novamente.')
             
             case 5:
             
