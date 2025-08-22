@@ -60,12 +60,12 @@ def funcao_bancaria_principal(indice_conta):
                 while True:
                     limpar_tela()
                     print('|===============[DEPÓSITO]===============|')
-                    print(f'Sua conta atualmente possui: R${Extrato[indice_conta]:.2f}\n'+ '='*34)
+                    print(f'Sua conta atualmente possui: R${Extrato[indice_conta]:.2f}\n'+ '='*41)
                     valor_deposito = float(input('Digite o valor que deseja depositar na sua conta: '))
                     if valor_deposito > 0:
                         limpar_tela()
                         Extrato[indice_conta] += valor_deposito
-                        print('Depósito realizado com sucesso!')
+                        print('Depósito realizado com sucesso!\n' + '='*41)
                         print(f'Seu extrato após a movimentação é: R${Extrato[indice_conta]:.2f}')
                         pausar()
                         break
@@ -77,7 +77,7 @@ def funcao_bancaria_principal(indice_conta):
                 while True:
                     limpar_tela()
                     print('|===============[SAQUE]===============|')
-                    print(f'Sua conta atualmente possui: R${Extrato[indice_conta]:.2f}\n'+ '='*34)
+                    print(f'Sua conta atualmente possui: R${Extrato[indice_conta]:.2f}\n'+ '='*41)
                     valor_saque = float(input('Digite o valor que deseja sacar da sua conta: '))
                     if valor_saque <= Extrato[indice_conta]:
                         if valor_saque <= limite:
@@ -89,10 +89,10 @@ def funcao_bancaria_principal(indice_conta):
                                 pausar()
                                 break
                             else:
-                                print('Você digitou um valor inválido. Tente novamente')
+                                print('Você digitou um valor inválido. Tente novamente.\n'+ '='*41)
                                 pausar()
                         else:
-                            print(f'A quantidade que você deseja sacar ultrapassa o limite de saque único de R${limite:.2f}. Tente novamente')
+                            print(f'='*41 + '\nA quantidade que você deseja sacar ultrapassa o limite de saque único de R${limite:.2f}. Tente novamente')
                             pausar()
                     else:
                         print('O valor do saque ultrapassou o extrato atual. Tente novamente.')
@@ -100,44 +100,47 @@ def funcao_bancaria_principal(indice_conta):
 
             case '4':
                 while True:
-                    print('|===============[TRANSFERÊNCIA]===============|')
                     limpar_tela()
+                    print('|===============[TRANSFERÊNCIA]===============|')
                     numero_conta_destino = int(input('Digite o número da conta para qual você quer transferir: '))
-                    
-                    if numero_conta_destino in Num_conta:
+                    print('='*41)
+                    if numero_conta_destino in Num_conta and numero_conta_destino != Num_conta[indice_conta]:
                         indice_destino = Num_conta.index(numero_conta_destino)
                         
-                        print(f'A conta digitada pertence à {Nomes[indice_destino]}\n' + '='*34)
+                        print(f'A conta digitada pertence à {Nomes[indice_destino]}\n' + '='*41)
                         
                         valor_transferencia = float(input('Digite o valor que deseja transferir: '))
                         
                         if valor_transferencia <= Extrato[indice_conta]:
-                            if valor_transferencia > 0:
-                                limpar_tela()
-                                Extrato[indice_conta] -= valor_transferencia
-                                Extrato[indice_destino] += valor_transferencia
-                                print('A transferência foi realizada com sucesso!')
-                                print(f'Seu saldo após a movimentação: {Extrato[indice_conta]:.2f}')
-                                pausar()
-                                break
-                            else:
-                                print('Você digitou um valor inválido. Tente novamente')
-                                pausar()
+                            while True:
+                                if valor_transferencia > 0:
+                                    limpar_tela()
+                                    Extrato[indice_conta] -= valor_transferencia
+                                    Extrato[indice_destino] += valor_transferencia
+                                    print('A transferência foi realizada com sucesso!\n' + '='*41)
+                                    print(f'Seu saldo após a movimentação: {Extrato[indice_conta]:.2f}')
+                                    pausar()
+                                    break
+                                else:
+                                    print('Você digitou um valor inválido. Tente novamente')
+                                    pausar()
+                            break
                         else:
                             print('Você não possui saldo suficiente na sua conta.')
                             pausar()
                             break
                     else:
-                        print('O número da conta digitado não está registrado. Tente novamente.')
+                        print('O número da conta digitado não é valido. Tente novamente.')
                         pausar()
 
             case '5':
                 while True:
                     limpar_tela()
                     print('|===========[Painel de investimentos]===========|')
-                    print('|Investimento em renda passiva')
-                    print('|Rendimento de 5% no ano')
-                    valor_invest = float(input('|Digite o valor que deseja investir-> '))
+                    print('|>Investimento em renda passiva')
+                    print('|>Rendimento de 5% no ano')
+                    valor_invest = float(input('|Digite o valor que deseja investir -> '))
+                    print('='*41)
                     if Extrato[indice_conta] >= valor_invest:
                         if valor_invest > 0:
                             aplicar_investimento(valor_invest, indice_conta)
@@ -190,7 +193,7 @@ while True:
     match opcao_menu:
         case '1':
             limpar_tela()
-            print('|===== [Login] =====|\n')
+            print('|============[Login]============|')
             
             email = input('Email: ')
             if email in Emails:
