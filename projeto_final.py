@@ -263,4 +263,4 @@ while True:
         
         case _:
             print('Opção inválida!')
-            pausar()
+            pausar() 
