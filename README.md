@@ -1,5 +1,4 @@
   [![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-  [![Bugs](https://img.shields.io/badge/Bugs-Inclusos_de_Graça-red?style=for-the-badge)]()
 
 # Python CLI Bank 🏦
 
