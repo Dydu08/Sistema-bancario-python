@@ -1,11 +1,7 @@
-<div align="center">
-  
   [![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
   [![Terminal](https://img.shields.io/badge/CLI-Terminal-black?style=for-the-badge&logo=windows-terminal&logoColor=white)]()
   [![License](https://img.shields.io/badge/License-MIT-lightgrey?style=for-the-badge)](https://opensource.org/licenses/MIT)
   [![Bugs](https://img.shields.io/badge/Bugs-Inclusos_de_Graça-red?style=for-the-badge)]()
-
-</div>
 
 # Python CLI Bank 🏦
 
